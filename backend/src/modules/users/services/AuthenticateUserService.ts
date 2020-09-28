@@ -35,7 +35,7 @@ class AuthenticateUserService {
 
     const passwordMatched = await this.hashProvider.compareHash(
       password,
-      user.password,
+      user.password as string,
     );
 
     if (!passwordMatched) {
