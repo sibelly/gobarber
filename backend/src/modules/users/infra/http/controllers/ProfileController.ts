@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import UpdateProfileService from '@modules/users/services/UpdateProfileService';
 import ShowProfileService from '@modules/users/services/ShowProfileService';
+import User from '../../typeorm/entities/User';
 
 export default class ProfileController {
   public async show(request: Request, response: Response): Promise<Response> {
@@ -11,9 +12,9 @@ export default class ProfileController {
 
     const user = await showProfile.execute({ user_id });
 
-    // delete user.password;
+    const userWithoutPassword: Omit<User, 'password'> = user;
 
-    return response.json(user);
+    return response.json(userWithoutPassword);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
@@ -29,8 +30,8 @@ export default class ProfileController {
       password,
     });
 
-    delete user.password;
+    const userWithoutPassword: Omit<User, 'password'> = user;
 
-    return response.json(user);
+    return response.json(userWithoutPassword);
   }
 }

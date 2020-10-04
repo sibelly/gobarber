@@ -15,14 +15,15 @@ class ShowProfileService {
     @inject('UsersRepository') private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({ user_id }: IRequest): Promise<User> {
+  public async execute({ user_id }: IRequest): Promise<Omit<User, 'password'>> {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
       throw new AppError('User not found');
     }
-
-    return user;
+    const userWithoutPassword: Omit<User, 'password'> = user;
+    console.log('*** Inspecionando user => ', userWithoutPassword);
+    return userWithoutPassword;
   }
 }
 
