@@ -14,8 +14,8 @@ export default class AppointmentsController {
 
     const appointment = await createAppointment.execute({
       date: parsedDate,
-      user_id,
       provider_id,
+      user_id,
     });
 
     return response.json(appointment);
