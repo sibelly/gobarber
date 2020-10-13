@@ -22,7 +22,6 @@ class ShowProfileService {
       throw new AppError('User not found');
     }
     const userWithoutPassword: Omit<User, 'password'> = user;
-    console.log('*** Inspecionando user => ', userWithoutPassword);
     return userWithoutPassword;
   }
 }
