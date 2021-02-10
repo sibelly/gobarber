@@ -64,3 +64,8 @@ buck-out/
 /ios/Pods/
 dist/
 ormconfig.json
+
+tmp/*
+!tmp/.gitkeep
+
+.env
