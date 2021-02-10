@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
-import User from '../../typeorm/entities/User';
+import { classToClass } from 'class-transformer';
 
 export default class UserAvatarController {
   public async update(request: Request, response: Response): Promise<Response> {
@@ -11,8 +11,6 @@ export default class UserAvatarController {
       avatarFileName: request.file.filename,
     });
 
-    const userWithoutPassword: Omit<User, 'password'> = user;
-
-    return response.json(userWithoutPassword);
+    return response.json(classToClass(user));
   }
 }
