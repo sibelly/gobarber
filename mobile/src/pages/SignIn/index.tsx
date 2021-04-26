@@ -44,8 +44,7 @@ const SignIn: React.FC = () => {
 
   const passwordInputRef = useRef<TextInput>(null);
 
-  const { signIn, user } = useAuth();
-  console.log(user);
+  const { signIn } = useAuth();
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
@@ -62,6 +61,8 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
+        console.log('email => ', data.email);
+        console.log('password => ', data.password);
         await signIn({
           email: data.email,
           password: data.password,
@@ -72,6 +73,8 @@ const SignIn: React.FC = () => {
           formRef.current?.setErrors(errors);
           return;
         }
+
+        console.log(err);
 
         Alert.alert(
           'Erro na autenticação',
@@ -100,7 +103,7 @@ const SignIn: React.FC = () => {
               <Title>Faça seu logon</Title>
             </View>
 
-            <Form ref={formRef} onSubmit={handleSignIn}>
+            <Form onSubmit={handleSignIn} ref={formRef}>
               <Input
                 autoCorrect={false}
                 autoCapitalize="none"
