@@ -13,7 +13,7 @@ import defaultTheme from './styles/theme/default';
 const App: React.FC = () => (
   <ThemeProvider theme={defaultTheme}>
     <NavigationContainer>
-      <StatusBar barStyle="light-content" backgroundColor="#312e38" />
+      <StatusBar barStyle="light-content" translucent />
       <AppProvider>
         <View style={{ flex: 1, backgroundColor: '#312e38' }}>
           <Routes />
