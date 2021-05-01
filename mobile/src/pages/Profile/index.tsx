@@ -111,7 +111,7 @@ const Profile: React.FC = () => {
               then: Yup.string().required('Campo obrigatório'),
               otherwise: Yup.string(),
             })
-            .oneOf([Yup.ref('password'), null], 'Confirmação incorreta'),
+            .oneOf([Yup.ref('password'), undefined], 'Confirmação incorreta'),
         });
 
         await schema.validate(data, { abortEarly: false });
@@ -216,13 +216,13 @@ const Profile: React.FC = () => {
 
               <Input
                 ref={oldPasswordInputRef}
+                containerStyle={{ marginTop: 16 }}
                 secureTextEntry
                 name="old_password"
                 icon="lock"
                 placeholder="Senha atual"
                 textContentType="newPassword"
                 returnKeyType="next"
-                containerStyle={{ marginTop: 16 }}
                 onSubmitEditing={() => passwordInputRef.current?.focus()}
               />
               <Input

@@ -6,6 +6,11 @@ interface ContainerProps {
   isErrored: boolean;
 }
 
+interface IconProps {
+  isFocused: boolean;
+  isFilled: boolean;
+}
+
 export const Container = styled.View<ContainerProps>`
   width: 100%;
   height: 60px;
@@ -39,6 +44,12 @@ export const TextInput = styled.TextInput`
   font-family: 'RobotoSlab-Regular';
 `;
 
-export const Icon = styled(FeatherIcon)`
+export const Icon = styled(FeatherIcon)<IconProps>`
   margin-right: 16px;
+  color: ${({ theme }) => theme.colors.grayHard};
+  ${props =>
+    (props.isFocused || props.isFilled) &&
+    css`
+      color: ${props.theme.colors.orange};
+    `}
 `;
